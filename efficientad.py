@@ -111,7 +111,7 @@ def main():
 
 
     train_loader = DataLoader(train_set, batch_size=1, shuffle=True,
-                              num_workers=4, pin_memory=True)
+                              num_workers=1, pin_memory=True)
     train_loader_infinite = InfiniteDataloader(train_loader)
     validation_loader = DataLoader(validation_set, batch_size=1)
 

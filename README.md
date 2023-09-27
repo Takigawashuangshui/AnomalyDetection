@@ -1,27 +1,29 @@
 # Anomaly Detection System for MVTec AD
-This is a system capable of anomaly detection for two distinct products from the MVTec Anomaly Detection dataset, bottle and screw.
+This is a system capable of anomaly detection for two distinct products from the MVTec Anomaly Detection dataset, screw and metal nut.
 
 ## Methods 
 The machine learning pipline is based on EfficientAD. https://arxiv.org/abs/2303.14535
+By using Lightweight Student–Teacher + Autoencoder architecture for anomalies detection and Patch description networks (PDN) for feature extraction. The model enables a fast handling of anomalies with low error rate, making it a perfect choise for abnomaly detection in manufacturing industry.
 
 
 ## Results
+### Mean anomaly detection AU-ROC percentages:
 
-| Model         | AU-ROC         |
-|---------------|----------------|
-| EfficientAD-M | 99.1           |
-| EfficientAD-S | 99.0           |
+| Product       | Model          | AU-ROC         |
+|---------------|----------------|----------------|
+| screw         | EfficientAD-S  | 96.8           |
+| screw         | EfficientAD-M  | 97.4           |
+| metal nut     | EfficientAD-S  | 99.5           |
+| metal nut     | EfficientAD-M  | 99.6           |
 
 
-
-
-## Benchmarks
+### Computational efficiency: Latency
 
 | Model         | GPU   | Latency      |
 |---------------|-------|--------------|
-| EfficientAD-M | A6000 | 4.4 ms       |
+| EfficientAD-S | A6000 | 4.4 ms       |
 | EfficientAD-M | A100  | 4.6 ms       |
-| EfficientAD-M | A5000 | 5.3 ms       |
+
 
 
 ## Setup
@@ -68,35 +70,22 @@ tar -xvf mvtec_ad_evaluation.tar.xz
 rm mvtec_ad_evaluation.tar.xz
 ```
 
-## efficientad.py
+## Usage
 
 Training and inference:
 
 ```
-python efficientad.py --dataset mvtec_ad --subdataset bottle
+python efficientad.py --dataset mvtec_ad --subdataset screw
+```
+Training with EfficientAD-M:
+
+```
+python efficientad.py --model_size medium --weights models/teacher_medium.pth --dataset mvtec_ad --subdataset screw
 ```
 
 Evaluation with Mvtec evaluation code:
 
 ```
-python mvtec_ad_evaluation/evaluate_experiment.py --dataset_base_dir './mvtec_anomaly_detection/' --anomaly_maps_dir './output/1/anomaly_maps/mvtec_ad/' --output_dir './output/1/metrics/mvtec_ad/' --evaluated_objects bottle
+python mvtec_ad_evaluation/evaluate_experiment.py --dataset_base_dir './mvtec_anomaly_detection/' --anomaly_maps_dir './output/1/anomaly_maps/mvtec_ad/' --output_dir './output/1/metrics/mvtec_ad/' --evaluated_objects screw
 ```
 
-## Reproduce paper results
-
-Reproducing results from paper requires ImageNet stored somewhere. Download ImageNet training images from https://www.kaggle.com/competitions/imagenet-object-localization-challenge/data or set `--imagenet_train_path` of `efficientad.py` to other folder with general images in children folders for example downloaded https://drive.google.com/uc?id=1n6RF08sp7RDxzKYuUoMox4RM13hqB1Jo
-
-Calls:
-
-```
-python efficientad.py --dataset mvtec_ad --subdataset bottle --model_size medium --weights models/teacher_medium.pth --imagenet_train_path ./ILSVRC/Data/CLS-LOC/train
-python efficientad.py --dataset mvtec_ad --subdataset cable --model_size medium --weights models/teacher_medium.pth --imagenet_train_path ./ILSVRC/Data/CLS-LOC/train
-python efficientad.py --dataset mvtec_ad --subdataset capsule --model_size medium --weights models/teacher_medium.pth --imagenet_train_path ./ILSVRC/Data/CLS-LOC/train
-...
-
-python efficientad.py --dataset mvtec_loco --subdataset breakfast_box --model_size medium --weights models/teacher_medium.pth --imagenet_train_path ./ILSVRC/Data/CLS-LOC/train
-python efficientad.py --dataset mvtec_loco --subdataset juice_bottle --model_size medium --weights models/teacher_medium.pth --imagenet_train_path ./ILSVRC/Data/CLS-LOC/train
-...
-```
-
-This produced the Mvtec AD results in `results/mvtec_ad_medium.json`.

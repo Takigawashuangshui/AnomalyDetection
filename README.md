@@ -1,27 +1,27 @@
-# EfficientAD
-Unofficial implementation of paper https://arxiv.org/abs/2303.14535
+# Anomaly Detection System for MVTec AD
+This is a system capable of anomaly detection for two distinct products from the MVTec Anomaly Detection dataset, bottle and screw.
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/efficientad-accurate-visual-anomaly-detection/anomaly-detection-on-mvtec-loco-ad)](https://paperswithcode.com/sota/anomaly-detection-on-mvtec-loco-ad?p=efficientad-accurate-visual-anomaly-detection)
+## Methods 
+The machine learning pipline is based on EfficientAD. https://arxiv.org/abs/2303.14535
+
 
 ## Results
 
-| Model         | Dataset    | Official Paper | efficientad.py |
-|---------------|------------|----------------|----------------|
-| EfficientAD-M | Mvtec AD   | 99.1           | 99.1           |
-| EfficientAD-M | VisA       | 98.1           | 98.2           |
-| EfficientAD-M | Mvtec LOCO | 90.7           | 90.1           |
-| EfficientAD-S | Mvtec AD   | 98.8           | 99.0           |
-| EfficientAD-S | VisA       | 97.5           | 97.6           |
-| EfficientAD-S | Mvtec LOCO | 90.0           | 89.5           |
+| Model         | AU-ROC         |
+|---------------|----------------|
+| EfficientAD-M | 99.1           |
+| EfficientAD-S | 99.0           |
+
+
 
 
 ## Benchmarks
 
-| Model         | GPU   | Official Paper | benchmark.py |
-|---------------|-------|----------------|--------------|
-| EfficientAD-M | A6000 | 4.5 ms         | 4.4 ms       |
-| EfficientAD-M | A100  | -              | 4.6 ms       |
-| EfficientAD-M | A5000 | 5.3 ms         | 5.3 ms       |
+| Model         | GPU   | Latency      |
+|---------------|-------|--------------|
+| EfficientAD-M | A6000 | 4.4 ms       |
+| EfficientAD-M | A100  | 4.6 ms       |
+| EfficientAD-M | A5000 | 5.3 ms       |
 
 
 ## Setup
@@ -100,37 +100,3 @@ python efficientad.py --dataset mvtec_loco --subdataset juice_bottle --model_siz
 ```
 
 This produced the Mvtec AD results in `results/mvtec_ad_medium.json`.
-
-## Mvtec LOCO Dataset
-
-Download dataset:
-
-```
-mkdir mvtec_loco_anomaly_detection
-cd mvtec_loco_anomaly_detection
-wget https://www.mydrive.ch/shares/48237/1b9106ccdfbb09a0c414bd49fe44a14a/download/430647091-1646842701/mvtec_loco_anomaly_detection.tar.xz
-tar -xf mvtec_loco_anomaly_detection.tar.xz
-cd ..
-```
-
-Download evaluation code:
-
-```
-wget https://www.mydrive.ch/shares/48245/a4e9922c5efa93f57b6a0ff9f5c6b969/download/430648014-1646847095/mvtec_loco_ad_evaluation.tar.xz
-tar -xvf mvtec_loco_ad_evaluation.tar.xz
-rm mvtec_loco_ad_evaluation.tar.xz
-```
-
-Install same packages as for Mvtec AD evaluation code, see above.
-
-Training and inference for LOCO sub-dataset:
-
-```
-python efficientad.py --dataset mvtec_loco --subdataset breakfast_box
-```
-
-Evaluation with LOCO evaluation code:
-
-```
-python mvtec_loco_ad_evaluation/evaluate_experiment.py --dataset_base_dir './mvtec_loco_anomaly_detection/' --anomaly_maps_dir './output/1/anomaly_maps/mvtec_loco/' --output_dir './output/1/metrics/mvtec_loco/' --object_name breakfast_box
-```

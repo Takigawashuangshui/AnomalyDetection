@@ -17,10 +17,9 @@ from sklearn.metrics import roc_auc_score
 def get_argparse():
     parser = argparse.ArgumentParser()
     parser.add_argument('-d', '--dataset', default='mvtec_ad',
-                        choices=['mvtec_ad', 'mvtec_loco'])
+                        choices=['mvtec_ad'])
     parser.add_argument('-s', '--subdataset', default='bottle',
-                        help='One of 15 sub-datasets of Mvtec AD or 5' +
-                             'sub-datasets of Mvtec LOCO')
+                        help='One of 15 sub-datasets of Mvtec AD')
     parser.add_argument('-o', '--output_dir', default='output/1')
     parser.add_argument('-m', '--model_size', default='small',
                         choices=['small', 'medium'])
@@ -33,9 +32,6 @@ def get_argparse():
     parser.add_argument('-a', '--mvtec_ad_path',
                         default='./mvtec_anomaly_detection',
                         help='Downloaded Mvtec AD dataset')
-    parser.add_argument('-b', '--mvtec_loco_path',
-                        default='./mvtec_loco_anomaly_detection',
-                        help='Downloaded Mvtec LOCO dataset')
     parser.add_argument('-t', '--train_steps', type=int, default=70000)
     return parser.parse_args()
 
@@ -45,7 +41,7 @@ on_gpu = torch.cuda.is_available()
 out_channels = 384
 image_size = 256
 
-# data loading
+# data loading  
 default_transform = transforms.Compose([
     transforms.Resize((image_size, image_size)),
     transforms.ToTensor(),
@@ -69,8 +65,6 @@ def main():
 
     if config.dataset == 'mvtec_ad':
         dataset_path = config.mvtec_ad_path
-    elif config.dataset == 'mvtec_loco':
-        dataset_path = config.mvtec_loco_path
     else:
         raise Exception('Unknown config.dataset')
 
@@ -78,7 +72,7 @@ def main():
     if config.imagenet_train_path == 'none':
         pretrain_penalty = False
 
-    # create output dir
+    # create output directory
     train_output_dir = os.path.join(config.output_dir, 'trainings',
                                     config.dataset, config.subdataset)
     test_output_dir = os.path.join(config.output_dir, 'anomaly_maps',
@@ -101,11 +95,6 @@ def main():
                                                            [train_size,
                                                             validation_size],
                                                            rng)
-    elif config.dataset == 'mvtec_loco':
-        train_set = full_train_set
-        validation_set = ImageFolderWithoutTarget(
-            os.path.join(dataset_path, config.subdataset, 'validation'),
-            transform=transforms.Lambda(train_transform))
     else:
         raise Exception('Unknown config.dataset')
 

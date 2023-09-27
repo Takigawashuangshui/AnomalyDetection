@@ -9,7 +9,7 @@ By using Lightweight Student–Teacher + Autoencoder architecture for anomalies 
 
 ## Results
 
-![alt text](https://github.com/Takigawashuangshui/AnomalyDetection/example.png?raw=true)
+![alt text](https://github.com/Takigawashuangshui/AnomalyDetection/blob/main/example.png?raw=true)
 
 ### Mean anomaly detection AU-ROC percentages:
 

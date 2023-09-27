@@ -16,8 +16,6 @@ from sklearn.metrics import roc_auc_score
 
 def get_argparse():
     parser = argparse.ArgumentParser()
-    #parser.add_argument('-d', '--dataset', default='mvtec_ad',
-    #                    choices=['mvtec_ad'])
     parser.add_argument('-s', '--subdataset', default='bottle',
                         help='One of 15 sub-datasets of Mvtec AD')
     parser.add_argument('-o', '--output_dir', default='output/1')
@@ -63,10 +61,8 @@ def main():
 
     config = get_argparse()
 
-    #if config.dataset == 'mvtec_ad':
     dataset_path = config.mvtec_ad_path
-    #else:
-    #    raise Exception('Unknown config.dataset')
+
 
     pretrain_penalty = True
     if config.imagenet_train_path == 'none':
@@ -86,7 +82,6 @@ def main():
         transform=transforms.Lambda(train_transform))
     test_set = ImageFolderWithPath(
         os.path.join(dataset_path, config.subdataset, 'test'))
-    #if config.dataset == 'mvtec_ad':
     # mvtec dataset paper recommend 10% validation set
     train_size = int(0.9 * len(full_train_set))
     validation_size = len(full_train_set) - train_size
@@ -95,8 +90,6 @@ def main():
                                                         [train_size,
                                                         validation_size],
                                                         rng)
-    #else:
-    #    raise Exception('Unknown config.dataset')
 
 
     train_loader = DataLoader(train_set, batch_size=1, shuffle=True,

@@ -23,10 +23,10 @@ By using Lightweight Student–Teacher + Autoencoder architecture for anomalies 
 
 ### Computational efficiency: Latency
 
-| Model         | GPU   | Latency      |
-|---------------|-------|--------------|
-| EfficientAD-S | A6000 | 4.4 ms       |
-| EfficientAD-M | A100  | 4.6 ms       |
+| Model         | GPU             | Latency      |
+|---------------|-----------------|--------------|
+| EfficientAD-S | Quadro RTX 6000 | 4.0 ms       |
+| EfficientAD-M | Quadro RTX 6000 | 5.9 ms       |
 
 
 

@@ -1,3 +1,7 @@
+"""
+Define the structure of model EfficientAD-S and EfficientAD-M.
+
+"""
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from torch import nn

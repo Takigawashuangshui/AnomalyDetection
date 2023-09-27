@@ -1,3 +1,8 @@
+"""
+Calculate the latency of model EfficientAD-S and EfficientAD-M. 
+Output latency in seconds.
+
+"""
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from time import time
@@ -7,14 +12,23 @@ from torch import nn
 
 def get_pdn(out=384):
     return nn.Sequential(
-        nn.Conv2d(3, 256, 4), nn.ReLU(inplace=True),
+        #medium:
+        #nn.Conv2d(3, 256, 4), nn.ReLU(inplace=True),
+        #nn.AvgPool2d(2, 2),
+        #nn.Conv2d(256, 512, 4), nn.ReLU(inplace=True),
+        #nn.AvgPool2d(2, 2),
+        #nn.Conv2d(512, 512, 1), nn.ReLU(inplace=True),
+        #nn.Conv2d(512, 512, 3), nn.ReLU(inplace=True),
+        #nn.Conv2d(512, out, 4), nn.ReLU(inplace=True),
+        #nn.Conv2d(out, out, 1)
+
+        #small:
+        nn.Conv2d(3, 128, 4), nn.ReLU(inplace=True),
         nn.AvgPool2d(2, 2),
-        nn.Conv2d(256, 512, 4), nn.ReLU(inplace=True),
+        nn.Conv2d(128, 256, 4), nn.ReLU(inplace=True),
         nn.AvgPool2d(2, 2),
-        nn.Conv2d(512, 512, 1), nn.ReLU(inplace=True),
-        nn.Conv2d(512, 512, 3), nn.ReLU(inplace=True),
-        nn.Conv2d(512, out, 4), nn.ReLU(inplace=True),
-        nn.Conv2d(out, out, 1)
+        nn.Conv2d(256, 256, 3), nn.ReLU(inplace=True),
+        nn.Conv2d(256, out, 4), nn.ReLU(inplace=True),
     )
 
 def get_ae():

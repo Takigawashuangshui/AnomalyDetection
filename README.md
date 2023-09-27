@@ -2,11 +2,15 @@
 This is a system capable of anomaly detection for two distinct products from the MVTec Anomaly Detection dataset, screw and metal nut.
 
 ## Methods 
-The machine learning pipline is based on EfficientAD. https://arxiv.org/abs/2303.14535
+The machine learning pipline is based on EfficientAD. https://arxiv.org/abs/2303.14535.
+
 By using Lightweight Student–Teacher + Autoencoder architecture for anomalies detection and Patch description networks (PDN) for feature extraction. The model enables a fast handling of anomalies with low error rate, making it a perfect choise for abnomaly detection in manufacturing industry.
 
 
 ## Results
+
+![alt text](https://github.com/Takigawashuangshui/AnomalyDetection/example.png?raw=true)
+
 ### Mean anomaly detection AU-ROC percentages:
 
 | Product       | Model          | AU-ROC         |
@@ -32,25 +36,18 @@ By using Lightweight Student–Teacher + Autoencoder architecture for anomalies 
 
 ```
 Python==3.10
+numpy==1.18.5
 torch==1.13.0
 torchvision==0.14.0
+scikit-learn==1.2.2
 tifffile==2021.7.30
 tqdm==4.56.0
-scikit-learn==1.2.2
-```
-
-### Mvtec AD Dataset
-
-For Mvtec evaluation code install:
-
-```
-numpy==1.18.5
 Pillow==7.0.0
 scipy==1.7.1
 tabulate==0.8.7
-tifffile==2021.7.30
-tqdm==4.56.0
 ```
+
+### Dataset
 
 Download dataset (if you already have downloaded then set path to dataset (`--mvtec_ad_path`) when calling `efficientad.py`).
 
@@ -62,13 +59,6 @@ tar -xvf mvtec_anomaly_detection.tar.xz
 cd ..
 ```
 
-Download evaluation code:
-
-```
-wget https://www.mydrive.ch/shares/60736/698155e0e6d0467c4ff6203b16a31dc9/download/439517473-1665667812/mvtec_ad_evaluation.tar.xz
-tar -xvf mvtec_ad_evaluation.tar.xz
-rm mvtec_ad_evaluation.tar.xz
-```
 
 ## Usage
 
@@ -88,4 +78,3 @@ Evaluation with Mvtec evaluation code:
 ```
 python mvtec_ad_evaluation/evaluate_experiment.py --dataset_base_dir './mvtec_anomaly_detection/' --anomaly_maps_dir './output/1/anomaly_maps/mvtec_ad/' --output_dir './output/1/metrics/mvtec_ad/' --evaluated_objects screw
 ```
-

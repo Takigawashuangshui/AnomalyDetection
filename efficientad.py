@@ -13,6 +13,9 @@ from tqdm import tqdm
 from common import get_autoencoder, get_pdn_small, get_pdn_medium, \
     ImageFolderWithoutTarget, ImageFolderWithPath, InfiniteDataloader
 from sklearn.metrics import roc_auc_score
+import mlflow
+
+mlflow.autolog()
 
 def get_argparse():
     parser = argparse.ArgumentParser()
@@ -90,7 +93,6 @@ def main():
                                                         [train_size,
                                                         validation_size],
                                                         rng)
-
 
     train_loader = DataLoader(train_set, batch_size=1, shuffle=True,
                               num_workers=1, pin_memory=True)
@@ -327,6 +329,7 @@ def teacher_normalization(teacher, train_loader):
     for train_image, _ in tqdm(train_loader, desc='Computing mean of features'):
         if on_gpu:
             train_image = train_image.cuda()
+        #print("train_image: ", train_image.size(), train_image)
         teacher_output = teacher(train_image)
         mean_output = torch.mean(teacher_output, dim=[0, 2, 3])
         mean_outputs.append(mean_output)

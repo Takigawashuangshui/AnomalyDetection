@@ -76,5 +76,11 @@ python efficientad.py --model_size medium --weights models/teacher_medium.pth --
 Evaluation with Mvtec evaluation code:
 
 ```
-python mvtec_ad_evaluation/evaluate_experiment.py --dataset_base_dir './mvtec_anomaly_detection/' --anomaly_maps_dir './output/1/anomaly_maps/mvtec_ad/' --output_dir './output/1/metrics/mvtec_ad/' --evaluated_objects screw
+python mvtec_ad_evaluation/evaluate_experiment.py --anomaly_maps_dir './output/1/anomaly_maps/mvtec_ad/' --output_dir './output/1/metrics/mvtec_ad/' --evaluated_objects screw
+```
+
+Anomaly detection system design example for one image:
+
+```
+python system_simulate.py --subdataset screw --sample_path 'test/scratch_head/000.png'
 ```

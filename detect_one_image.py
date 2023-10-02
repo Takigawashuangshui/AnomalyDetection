@@ -13,7 +13,7 @@ def load_image(path):
     return image
 
 
-def perform(image, subdataset, path, output_dir, model_size):
+def perform(image, path, output_dir, model_size):
     # constants
     seed = 42
     image_size = 256
@@ -34,14 +34,14 @@ def perform(image, subdataset, path, output_dir, model_size):
 
     # load models
     if model_size == 'small':
-        teacher = torch.load('output/1/trainings/mvtec_ad/'+subdataset+'/teacher_final.pth')
-        student = torch.load('output/1/trainings/mvtec_ad/'+subdataset+'/student_final.pth')
+        teacher = torch.load('output/4/trainings/mvtec_ad/two_kinds/teacher_final.pth')
+        student = torch.load('output/4/trainings/mvtec_ad/two_kinds/student_final.pth')
     elif model_size == 'medium':
-        teacher = torch.load('output/2/trainings/mvtec_ad/'+subdataset+'/teacher_final.pth')
-        student = torch.load('output/2/trainings/mvtec_ad/'+subdataset+'/student_final.pth')
+        teacher = torch.load('output/5/trainings/mvtec_ad/two_kinds/teacher_final.pth')
+        student = torch.load('output/5/trainings/mvtec_ad/two_kinds/student_final.pth')
     else:
         raise Exception()
-    autoencoder = torch.load('output/1/trainings/mvtec_ad/'+subdataset+'/autoencoder_final.pth')
+    autoencoder = torch.load('output/4/trainings/mvtec_ad/two_kinds/autoencoder_final.pth')
     if torch.cuda.is_available():
         teacher.cuda()
         student.cuda()

@@ -2,7 +2,7 @@
 This is a system capable of anomaly detection for two distinct products from the MVTec Anomaly Detection dataset, screw and metal nut.
 
 ## Methods 
-![alt text](https://github.com/Takigawashuangshui/AnomalyDetection/blob/main/pipeline-chart.png?raw=true)
+![alt text](https://github.com/Takigawashuangshui/AnomalyDetection/blob/main/pipeline_chart.png?raw=true)
 
 The machine learning model is based on EfficientAD. https://arxiv.org/abs/2303.14535.
 

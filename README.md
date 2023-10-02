@@ -65,25 +65,25 @@ cd ..
 
 ## Usage
 
-Training and inference:
+Training and inference for screw and metal nut:
 
 ```
-python efficientad.py --dataset mvtec_ad --subdataset screw
+python mvtec_ad_training/efficientad.py --dataset mvtec_ad
 ```
-Training with EfficientAD-M:
+Training with EfficientAD-M for two kinds of images:
 
 ```
-python mvtec_ad_training/efficientad.py --model_size medium --weights models/teacher_medium.pth --dataset mvtec_ad --subdataset screw
+python mvtec_ad_training/efficientad.py --model_size medium --weights models/teacher_medium.pth --dataset mvtec_ad
 ```
 
 Evaluation with Mvtec evaluation code:
 
 ```
-python mvtec_ad_evaluation/evaluate_experiment.py --anomaly_maps_dir './output/1/anomaly_maps/mvtec_ad/' --output_dir './output/1/metrics/mvtec_ad/' --evaluated_objects screw
+python mvtec_ad_evaluation/evaluate_experiment.py --anomaly_maps_dir './output/4/anomaly_maps/mvtec_ad/' --output_dir './output/4/metrics/mvtec_ad/' --evaluated_objects screw
 ```
 
 Anomaly detection pipeline for one image:
 
 ```
-python pipeline.py --subdataset screw --sample_path 'test/scratch_head/000.png'
+python pipeline.py --sample_path './mvtec_anomaly_detection/metal_nut/test/scratch_head/000.png'
 ```

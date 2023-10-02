@@ -1,4 +1,5 @@
-"""Compute evaluation metrics for a single experiment."""
+"""Compute evaluation metrics for a single experiment.
+"""
 
 __author__ = "Paul Bergmann, David Sattlegger"
 __copyright__ = "2021, MVTec Software GmbH"
@@ -206,7 +207,7 @@ def main():
         # images for this object.
         gt_filenames, prediction_filenames = \
             parse_dataset_files(
-                object_name=obj,
+                object_name='two_kinds',
                 dataset_base_dir=args.dataset_base_dir,
                 anomaly_maps_dir=args.anomaly_maps_dir)
 

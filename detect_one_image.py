@@ -3,14 +3,9 @@
 import numpy as np
 import tifffile
 import torch
-from torch.utils.data import DataLoader
 from torchvision import transforms
-import argparse
 import os
 import random
-from common import get_autoencoder, get_pdn_small, get_pdn_medium, \
-    ImageFolderWithoutTarget, ImageFolderWithPath, InfiniteDataloader
-from sklearn.metrics import roc_auc_score
 from PIL import Image
 
 def load_image(path):

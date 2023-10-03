@@ -8,6 +8,14 @@ The machine learning model is based on EfficientAD. https://arxiv.org/abs/2303.1
 
 By using Lightweight Student–Teacher + Autoencoder architecture for anomalies detection and Patch description networks (PDN) for feature extraction. The model enables a fast handling of anomalies with low error rate, making it a perfect choise for abnomaly detection in manufacturing industry.
 
+### Challenges
+1. Types and possible locations of defects are unknown --> Use Student–Teacher structure so that it perform well even trained only on normal images.
+
+2. Industrial settings requires strict runtime limits --> Reduce computational cost by drastically reducing depth for feature extractor, performing down-sampling early, and using light-weight S-T structure.
+
+3. Violations of logical constraints regarding the position, size, arrangement, etc. --> Use Autoencoder to detect logical anomalies.
+
+
 
 ## Results
 
@@ -68,12 +76,12 @@ cd ..
 Training and inference for screw and metal nut:
 
 ```
-python mvtec_ad_training/efficientad.py --dataset mvtec_ad
+python mvtec_ad_training/efficientad_2objects.py --dataset mvtec_ad
 ```
 Training with EfficientAD-M for two kinds of images:
 
 ```
-python mvtec_ad_training/efficientad.py --model_size medium --weights models/teacher_medium.pth --dataset mvtec_ad
+python mvtec_ad_training/efficientad_2objects.py --model_size medium --weights models/teacher_medium.pth --dataset mvtec_ad
 ```
 
 Evaluation with Mvtec evaluation code:

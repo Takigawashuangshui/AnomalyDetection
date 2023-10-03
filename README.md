@@ -85,5 +85,5 @@ python mvtec_ad_evaluation/evaluate_experiment.py --anomaly_maps_dir './output/4
 Anomaly detection pipeline for one image:
 
 ```
-python pipeline.py --sample_path './mvtec_anomaly_detection/metal_nut/test/scratch_head/000.png'
+python pipeline.py --sample_path './mvtec_anomaly_detection/metal_nut/test/scratch/000.png'
 ```

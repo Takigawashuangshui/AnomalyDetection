@@ -13,13 +13,13 @@ from tqdm import tqdm
 from common import get_autoencoder, get_pdn_small, get_pdn_medium, \
     ImageFolderWithoutTarget, ImageFolderWithPath, InfiniteDataloader
 from sklearn.metrics import roc_auc_score
-import mlflow
+#import mlflow
 
-mlflow.autolog()
+#mlflow.autolog()
 
 def get_argparse():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-o', '--output_dir', default='output/4')
+    parser.add_argument('-o', '--output_dir', default='output/s')
     parser.add_argument('-m', '--model_size', default='small',
                         choices=['small', 'medium'])
     parser.add_argument('-w', '--weights', default='models/teacher_small.pth')
@@ -31,7 +31,7 @@ def get_argparse():
     parser.add_argument('-a', '--mvtec_ad_path',
                         default='./mvtec_anomaly_detection',
                         help='Downloaded Mvtec AD dataset')
-    parser.add_argument('-t', '--train_steps', type=int, default=70000)
+    parser.add_argument('-t', '--train_steps', type=int, default=100000)
     return parser.parse_args()
 
 # constants

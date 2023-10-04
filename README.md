@@ -25,10 +25,10 @@ By using Lightweight Student–Teacher + Autoencoder architecture for anomalies 
 
 | Product       | Model          | AU-ROC         |
 |---------------|----------------|----------------|
-| screw         | EfficientAD-S  | 96.8           |
+| screw         | EfficientAD-S  | 94.8           |
 | screw         | EfficientAD-M  | 97.4           |
-| metal nut     | EfficientAD-S  | 99.5           |
-| metal nut     | EfficientAD-M  | 99.6           |
+| metal nut     | EfficientAD-S  | 95.5           |
+| metal nut     | EfficientAD-M  | 98.6           |
 
 
 

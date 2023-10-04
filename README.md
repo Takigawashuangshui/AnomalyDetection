@@ -1,9 +1,10 @@
 # Anomaly Detection System for MVTec AD
 This is a system capable of anomaly detection for two distinct products from the MVTec Anomaly Detection dataset, screw and metal nut.
+![alt text](https://github.com/Takigawashuangshui/AnomalyDetection/blob/main/pipeline_chart.png?raw=true)
+The whole pipeline is implemented via pipeline.py.
+
 
 ## Methods 
-![alt text](https://github.com/Takigawashuangshui/AnomalyDetection/blob/main/pipeline_chart.png?raw=true)
-
 The machine learning model is based on EfficientAD. https://arxiv.org/abs/2303.14535.
 
 By using Lightweight Student–Teacher + Autoencoder architecture for anomalies detection and Patch description networks (PDN) for feature extraction. The model enables a fast handling of anomalies with low error rate, making it a perfect choise for abnomaly detection in manufacturing industry.

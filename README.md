@@ -5,7 +5,7 @@ The whole pipeline is implemented via pipeline.py.
 
 
 ## Methods 
-The machine learning model is based on EfficientAD. https://arxiv.org/abs/2303.14535.
+The machine learning model is based on EfficientAD. https://arxiv.org/abs/2303.14535. The code is built based on https://github.com/nelson1425/EfficientAD.
 
 By using Lightweight Student–Teacher + Autoencoder architecture for anomalies detection and Patch description networks (PDN) for feature extraction. The model enables a fast handling of anomalies with low error rate, making it a perfect choise for abnomaly detection in manufacturing industry.
 
